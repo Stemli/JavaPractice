@@ -17,7 +17,7 @@ class Product {
 
 public class Main {
     // Метод для добавления продукта
-    public static void addProduct(ArrayList<Product> products, String addProduct) {
+    private static void addProduct(ArrayList<Product> products, String addProduct) {
         products.add(new Product(addProduct));
     }
 
@@ -53,7 +53,7 @@ public class Main {
             в моём случае
          */
 
-        calculated calc = new calculated(400, 1000);
+        calculated calc = new calculated(400, 666);
         calc.calculate(weight);
         System.out.println("\nПо нашим подсчётам вам потребуется");
 
@@ -82,9 +82,9 @@ class calculated {
                 double ratio = (double) currentWeight / coreWeight;
 
                 // Изменяем значения в массиве
-                for (int i = 0; i < weight.size(); i++) {
-                    weight.set(i, (int)(weight.get(i) * ratio)); // Обновляем значение
-                }
+                weight.replaceAll(integer -> {
+                    return (int) (integer * ratio); // Обновляем значение
+                });
                 return; // Выходим из метода после нахождения первого совпадения
             }
         }
